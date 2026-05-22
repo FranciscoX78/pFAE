@@ -21,8 +21,14 @@ jobs:
         with:
           node-version: 20
 
+      - name: Clean dependencies
+        run: rm -rf node_modules
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Fix Vite permissions
+        run: chmod +x ./node_modules/.bin/vite
 
       - name: Build production bundle
         run: npm run build
